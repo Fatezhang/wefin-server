@@ -13,4 +13,4 @@ RUN apk add ca-certificates
 WORKDIR /app
 EXPOSE 80
 
-CMD ["java", "-jar", "scaffold-1.0.0.jar"]
+CMD ["java", "-jar", "wefine-server-1.0.jar"]
