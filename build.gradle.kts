@@ -14,6 +14,9 @@ plugins {
 repositories {
     mavenLocal()
     maven {
+        url = uri("https://mirrors.tencent.com/nexus/repository/maven-public/")
+    }
+    maven {
         url = uri("https://repo.maven.apache.org/maven2/")
     }
 }
