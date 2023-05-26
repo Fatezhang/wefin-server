@@ -4,11 +4,10 @@ description = "wefine-server"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 plugins {
-    id("org.springframework.boot") version "3.0.5"
+    id("org.springframework.boot") version "2.7.12"
     id("io.spring.dependency-management") version "1.1.0"
     id("java")
     id("io.freefair.lombok") version "8.0.1"
-    id("org.flywaydb.flyway") version "9.18.0"
 }
 
 repositories {
@@ -24,7 +23,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-configuration-processor")
 
-    implementation("org.flywaydb:flyway-mysql:9.18.0")
+    implementation("org.flywaydb:flyway-core:7.15.0")
     implementation("net.logstash.logback:logstash-logback-encoder:7.3")
 
     runtimeOnly("mysql:mysql-connector-java:8.0.32")
