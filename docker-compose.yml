@@ -1,0 +1,51 @@
+version: "3.7"
+
+services:
+  app:
+    image: gradle:8.1.0-jdk17
+    working_dir: /app
+    volumes:
+      - .:/app
+      - gradle-cache:/home/gradle/.gradle
+    networks:
+      - app_net
+    env_file:
+      - docker.env
+    ports:
+      - 8080:8080
+      - 5005:5005
+    command: gradle bootRun
+    depends_on:
+      - db
+
+  test:
+    image: gradle:8.1.0-jdk17
+    working_dir: /app
+    volumes:
+      - .:/app
+      - gradle-cache:/home/gradle/.gradle
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - app_net
+    command: gradle clean check
+
+  db:
+    image: mysql:8.0.33
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wefine_db
+      MYSQL_USER: local
+      MYSQL_PASSWORD: local
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db_data:/var/lib/mysql
+    networks:
+      - app_net
+networks:
+  app_net:
+
+volumes:
+  gradle-cache:
+  db-cache:
